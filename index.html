@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>膜色流光 · WebGPU 肥皂泡互动展项</title>
+    <link rel="stylesheet" href="./src/ui/styles.css" />
+  </head>
+  <body>
+    <nav class="top-nav">
+      <div class="brand">膜色流光 <span>WebGPU 肥皂泡互动展项</span></div>
+      <div class="nav-links">
+        <a href="#/show" data-route="show">吹泡展示</a>
+        <a href="#/profile" data-route="profile">膜厚剖面</a>
+        <a href="#/optics" data-route="optics">干涉原理</a>
+        <a href="#/params" data-route="params">展项参数</a>
+      </div>
+    </nav>
+    <main id="app"></main>
+    <div id="fps-badge" class="fps-badge" hidden>-- fps</div>
+    <div id="gpu-error" class="gpu-error" hidden>
+      <div class="gpu-error-card">
+        <h2>需要 WebGPU 支持</h2>
+        <p id="gpu-error-msg"></p>
+        <p>请使用 Chrome / Edge 113 以上版本，并在地址栏确认硬件加速已开启。</p>
+      </div>
+    </div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,144 @@
+:root {
+  --bg: #07090f;
+  --panel: rgba(16, 22, 34, 0.82);
+  --panel-border: rgba(120, 170, 255, 0.18);
+  --text: #e8eefc;
+  --text-dim: #93a1bd;
+  --accent: #6db4ff;
+  --accent2: #b48dff;
+  --good: #5fd39a;
+  --warn: #ffc46b;
+  color-scheme: dark;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); overflow: hidden; }
+body { display: flex; flex-direction: column; }
+
+.top-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 64px; flex: 0 0 64px;
+  background: linear-gradient(180deg, rgba(20,28,44,.95), rgba(12,16,26,.85));
+  border-bottom: 1px solid var(--panel-border);
+  z-index: 10;
+}
+.brand { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+.brand span { font-size: 13px; font-weight: 400; color: var(--text-dim); margin-left: 12px; letter-spacing: 0; }
+.nav-links { display: flex; gap: 8px; }
+.nav-links a {
+  color: var(--text-dim); text-decoration: none; padding: 8px 18px; border-radius: 8px;
+  font-size: 15px; transition: all .18s;
+}
+.nav-links a:hover { color: var(--text); background: rgba(109,180,255,.1); }
+.nav-links a.active { color: #fff; background: linear-gradient(135deg, rgba(109,180,255,.25), rgba(180,141,255,.2)); }
+
+#app { flex: 1; position: relative; min-height: 0; }
+.page { position: absolute; inset: 0; display: flex; flex-direction: column; }
+
+.fps-badge {
+  position: fixed; right: 20px; bottom: 16px; z-index: 20;
+  background: var(--panel); border: 1px solid var(--panel-border);
+  padding: 6px 14px; border-radius: 20px; font-size: 13px; color: var(--good);
+  font-variant-numeric: tabular-nums;
+}
+.fps-badge.low { color: var(--warn); }
+
+.gpu-error {
+  position: fixed; inset: 0; z-index: 100; display: flex;
+  align-items: center; justify-content: center; background: rgba(4,6,10,.85);
+}
+.gpu-error[hidden] { display: none; }
+.gpu-error-card {
+  background: var(--panel); border: 1px solid var(--panel-border);
+  border-radius: 16px; padding: 36px 44px; max-width: 520px;
+}
+.gpu-error-card h2 { margin: 0 0 12px; color: var(--warn); }
+.gpu-error-card p { color: var(--text-dim); line-height: 1.7; }
+
+/* 通用面板 */
+.side-panel {
+  position: absolute; top: 20px; right: 20px; width: 320px; max-height: calc(100% - 40px);
+  overflow-y: auto; background: var(--panel); border: 1px solid var(--panel-border);
+  border-radius: 14px; padding: 20px; backdrop-filter: blur(12px);
+}
+.side-panel h3 { margin: 0 0 14px; font-size: 16px; }
+.field { margin-bottom: 14px; }
+.field label { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-dim); margin-bottom: 6px; }
+.field label b { color: var(--accent); font-weight: 600; }
+.field input[type="range"] { width: 100%; accent-color: var(--accent); }
+.field select, .field input[type="number"] {
+  width: 100%; background: rgba(255,255,255,.06); border: 1px solid var(--panel-border);
+  color: var(--text); border-radius: 8px; padding: 8px 10px; font-size: 14px;
+}
+.btn {
+  background: linear-gradient(135deg, rgba(109,180,255,.25), rgba(180,141,255,.22));
+  border: 1px solid var(--panel-border); color: var(--text); border-radius: 10px;
+  padding: 10px 16px; font-size: 14px; cursor: pointer; transition: transform .12s, filter .12s;
+  width: 100%; margin-bottom: 8px;
+}
+.btn:hover { filter: brightness(1.2); transform: translateY(-1px); }
+.btn.secondary { background: rgba(255,255,255,.06); }
+
+.hint {
+  position: absolute; left: 20px; bottom: 20px; background: var(--panel);
+  border: 1px solid var(--panel-border); border-radius: 12px; padding: 14px 18px;
+  font-size: 13px; color: var(--text-dim); line-height: 1.8; max-width: 360px;
+}
+.hint b { color: var(--text); }
+.kbd { background: rgba(255,255,255,.1); border-radius: 4px; padding: 1px 7px; font-size: 12px; }
+
+/* 剖面页 */
+.profile-wrap { flex: 1; display: flex; gap: 20px; padding: 20px; min-height: 0; }
+.profile-chart {
+  flex: 1; background: var(--panel); border: 1px solid var(--panel-border);
+  border-radius: 14px; padding: 18px; min-width: 0;
+}
+.profile-chart canvas { width: 100%; height: 100%; display: block; }
+.legend { display: flex; gap: 16px; font-size: 13px; color: var(--text-dim); margin-top: 8px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+
+/* 干涉原理页 */
+.optics-wrap { flex: 1; overflow-y: auto; padding: 24px 32px; }
+.optics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1400px; margin: 0 auto; }
+.card {
+  background: var(--panel); border: 1px solid var(--panel-border);
+  border-radius: 14px; padding: 22px;
+}
+.card h3 { margin: 0 0 12px; }
+.card p, .card li { color: var(--text-dim); line-height: 1.8; font-size: 14px; }
+.card canvas { width: 100%; border-radius: 10px; background: #0a0e17; }
+.formula {
+  font-family: 'Cambria Math', Georgia, serif; font-size: 17px; color: var(--accent);
+  background: rgba(109,180,255,.08); border-radius: 8px; padding: 12px 16px; margin: 10px 0;
+}
+
+/* 参数页 */
+.params-wrap { flex: 1; overflow-y: auto; padding: 24px 32px; }
+.params-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; max-width: 1500px; margin: 0 auto; }
+.recipe-card { cursor: pointer; transition: transform .15s, border-color .15s; }
+.recipe-card:hover { transform: translateY(-3px); }
+.recipe-card.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.recipe-card h4 { margin: 0 0 8px; font-size: 17px; }
+.recipe-card .comp { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; }
+.kv { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: 13px; }
+.kv span:nth-child(odd) { color: var(--text-dim); }
+.kv span:nth-child(even) { font-variant-numeric: tabular-nums; }
+
+/* 小摄像头预览 */
+.cam-preview {
+  position: absolute; left: 20px; top: 20px; width: 200px; height: 112px;
+  border-radius: 12px; overflow: hidden; border: 1px solid var(--panel-border);
+  background: #000; transform: scaleX(-1);
+}
+.cam-preview video { width: 100%; height: 100%; object-fit: cover; }
+.cam-preview.off { display: none; }
+
+.status-line { font-size: 12px; color: var(--text-dim); margin-top: 8px; }
+.status-line .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--good); margin-right: 6px; }
+.status-line .dot.off { background: #555; }
+
+@media (max-width: 1100px) {
+  .optics-grid { grid-template-columns: 1fr; }
+  .side-panel { width: 280px; }
+}

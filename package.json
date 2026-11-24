@@ -1,0 +1,26 @@
+{
+  "name": "soap-film-bubble-exhibit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "科技馆 WebGPU 膜厚物理肥皂泡互动展项",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "fetch:model": "node scripts/fetch-hand-model.mjs",
+    "postinstall": "node scripts/copy-wasm.mjs"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.22"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@webgpu/types": "^0.1.54",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.7"
+  }
+}
